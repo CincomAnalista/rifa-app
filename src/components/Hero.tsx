@@ -1,6 +1,6 @@
 export function Hero() {
   return (
-    <section className="h-screen bg-[url(src/assets/hero.jpg)] bg-cover bg-center bg-no-repeat">
+    <section className="h-screen bg-[url(hero.jpg)] bg-cover bg-center bg-no-repeat">
       <div className="absolute h-screen inset-0 bg-gray-900/45"></div>
 
       <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
