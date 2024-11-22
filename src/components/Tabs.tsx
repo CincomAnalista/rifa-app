@@ -1,8 +1,9 @@
+import { ReactNode, useEffect, useState } from 'react';
 import { CustomersTicket, CustomersRemaining } from './';
+import { getClients } from '../data/api';
+import { CustomersProps } from '../data/interfaces';
 import { Tabs } from './ui/tabs';
-import data from '../data/data.json';
 
-import { ReactNode } from 'react';
 
 const Div = ({ children, tittle }: { children: ReactNode; tittle: string }) => {
   return (
@@ -13,7 +14,7 @@ const Div = ({ children, tittle }: { children: ReactNode; tittle: string }) => {
   );
 };
 
-const TabsItems = [
+const TabsItems = (data:CustomersProps[]) => [
   {
     title: 'Clientes',
     value: 'Clientes que cuentan con tickets',
@@ -35,9 +36,32 @@ const TabsItems = [
 ];
 
 export function Tab() {
+  const [data, setData] = useState<CustomersProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchData = async () =>{
+      try{
+        const data = await getClients();
+        setData(data);
+        setLoading(false);
+      } catch (error){
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    } 
+
+    fetchData();
+  }, [])
+
+  if (loading) {
+    return <div>Cargando...</div>;
+  }
+
   return (
     <div className="flex flex-col max-w-7xl mx-auto w-full items-center justify-center  sm:my-28 md:my-36 lg:my-40">
-      <Tabs tabs={TabsItems} />
+      <Tabs tabs={TabsItems(data)} />
     </div>
   );
 }
