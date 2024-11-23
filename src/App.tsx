@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Hero, Navbar, Tab } from './components';
-import { BackgroundLines } from './components/ui/background-lines';
+import { Hero, Navbar } from './components/common';
+import { Tab } from './components';
 import { getTime } from './data/api';
 
 interface Props {
@@ -27,12 +27,12 @@ function App() {
 
   return (
     <>
-      <BackgroundLines>
-        <Navbar />
-        <Hero />
-        <div>ultima fecha de actualizacion: {date?.lastUpdate}</div>
-        <Tab />
-      </BackgroundLines>
+      <Navbar />
+      <Hero />
+      <div className="text-center text-xl mb-3">
+        ultima fecha de actualizacion: {date?.lastUpdate}
+      </div>
+      <Tab />
     </>
   );
 }

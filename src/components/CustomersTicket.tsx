@@ -1,5 +1,5 @@
 import {PersonIcon} from '@radix-ui/react-icons'
-import { CustomersProps } from '../data/interfaces';
+import { CustomersProps } from '../data';
 
 interface Props {
   data: CustomersProps[];

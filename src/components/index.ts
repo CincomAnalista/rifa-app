@@ -1,5 +1,5 @@
 export * from './CustomersTicket'
 export * from './CustomersRemaining'
 export * from './Tabs'
-export * from './Hero'
-export * from './Navbar'
+export * from './common'
+export * from './ui'
