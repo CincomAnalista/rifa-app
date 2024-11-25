@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import {
-  CustomersTicket,
   CustomersRemaining,
+  CustomersTicket,
   Tabs,
   Skeleton,
   Div
