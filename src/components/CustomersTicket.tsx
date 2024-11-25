@@ -7,14 +7,15 @@ interface Props {
 
 export function CustomersTicket({ data }: Props) {
   const filter = data.filter((customer) => customer.Boletas > 0);
-  const headers = ['Cliente', 'Boletas', 'Numero', 'Estado'];
+  const headers = ['Cliente', 'Vendedor', 'Boletas', 'Numero', 'Estado'];
   return (
-    <Table header={headers}>
+    <Table header={headers} >
       {filter.map((customer) => (
         <TableRow key={customer.Cliente}>
           <TableCellIcon>{customer.Cliente}</TableCellIcon>
+          <TableCell>{customer.Vendedor.split(' ')[0].toUpperCase()}</TableCell>
           <TableCell>{customer.Boletas}</TableCell>
-          <TableCell>{customer.Numeros}</TableCell>
+            <TableCell>{customer.Numeros.join(', ')}</TableCell>
           <TableCellActive name='Activo' />
         </TableRow>
       ))}
