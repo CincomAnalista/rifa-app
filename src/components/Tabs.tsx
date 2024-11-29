@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import {
   CustomersRemaining,
   CustomersTicket,
+  Grid,
   Tabs,
-  Skeleton,
+  TabSkeleton,
   Div
 } from '../components';
-import { getClients, CustomersProps } from '../data';
+import { getClients, CustomersProps, getTime } from '../data';
 
 const TabsItems = (data: CustomersProps[]) => [
   {
@@ -26,22 +27,33 @@ const TabsItems = (data: CustomersProps[]) => [
         <CustomersRemaining data={data} />
       </Div>
     )
+  },
+  {
+    title: 'NUMEROS',
+    value: 'Numeros Disponibles',
+    content: (
+      <Div tittle="NUMEROS DISPONIBLES:">
+        <Grid data={data} />
+      </Div>
+    )
   }
 ];
 
 export function Tab() {
   const [data, setData] = useState<CustomersProps[]>([]);
+  const [dataTime, setDataTime] = useState<CustomersProps>();
   const [loading, setLoading] = useState<boolean>(true);
 
+  console.log(loading);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getClients();
+        const [data, time] = await Promise.all([getClients(), getTime()]);
         setData(data);
+        setDataTime(time);
         setLoading(false);
       } catch (error) {
         console.error(error);
-      } finally {
         setLoading(false);
       }
     };
@@ -50,11 +62,14 @@ export function Tab() {
   }, []);
 
   if (loading) {
-    return <Skeleton />;
+    return <TabSkeleton />;
   }
 
   return (
     <div className="flex flex-col max-w-7xl mx-auto w-full items-center justify-center lg:my-2">
+      <div className="text-center text-xl mb-3">
+        ultima fecha de actualizacion: {dataTime?.lastUpdate}
+      </div>
       <Tabs tabs={TabsItems(data)} />
     </div>
   );

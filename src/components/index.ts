@@ -1,5 +1,6 @@
 export * from './CustomersTicket'
 export * from './CustomersRemaining'
+export * from './NumbersGrid'
 export * from './Tabs'
 export * from './common'
 export * from './ui'
