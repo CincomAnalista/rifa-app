@@ -3,6 +3,7 @@ import { Children, useState } from 'react';
 
 interface TableFilterProps {
   filterValue: string;
+  footer?: React.ReactNode;
   onFilterChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   options: string[];
 }
@@ -11,12 +12,14 @@ interface TableProps {
   header: string[];
   children: React.ReactNode;
   filter?: boolean;
+  footer?: React.ReactNode;
   filterOptions?: string[];
 }
 
 export function Table({
   header,
   children,
+  footer,
   filter = false,
   filterOptions = []
 }: TableProps) {
@@ -63,6 +66,9 @@ export function Table({
             </tr>
           </thead>
           <tbody>{filteredChildren}</tbody>
+          {footer && (
+            Footer({children: footer})
+          )}
         </table>
       </div>
     </div>
@@ -136,4 +142,13 @@ function TableFilter({
       </select>
     </div>
   );
+}
+
+
+export function Footer ({children}: {children: React.ReactNode}) {
+  return (
+    <tfoot>
+      {children}
+    </tfoot>
+  )
 }

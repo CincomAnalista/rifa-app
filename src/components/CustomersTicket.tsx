@@ -7,9 +7,18 @@ interface Props {
 
 export function CustomersTicket({ data }: Props) {
   const filter = data.filter((customer) => customer.Boletas > 0);
+  const total = filter.reduce((acc, customer) => acc + customer.Boletas, 0);
   const headers = ['Cliente', 'Vendedor', 'Boletas', 'Numero', 'Estado'];
   return (
-    <Table header={headers} >
+    <Table header={headers}
+    footer={
+         <tr>
+          <td colSpan={2} className="text-right text-sm p-2">Total:</td>
+          <td className="p-2 text-sm font-bold">{total}</td>
+          <td colSpan={2}></td>
+        </tr>
+    }
+    >
       {filter.map((customer, index) => (
         <TableRow key={customer.Cliente}>
           <TableCellIcon index={index}>{customer.Cliente}</TableCellIcon>
