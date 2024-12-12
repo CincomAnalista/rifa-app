@@ -22,9 +22,9 @@ export function CustomersRemaining({ data }: Props) {
 
   return (
     <Table header={headers} filter filterOptions={uniqueVendedores}>
-      {closeCustomers.map((customer) => (
+      {closeCustomers.map((customer, index) => (
         <TableRow key={customer.Cliente}>
-          <TableCellIcon>{customer.Cliente}</TableCellIcon>
+          <TableCellIcon index={index} >{customer.Cliente}</TableCellIcon>
           <TableCell>{customer.Vendedor}</TableCell>
           <TableCell>$ {customer.Falta_para_boleta.toLocaleString()}</TableCell>
         </TableRow>

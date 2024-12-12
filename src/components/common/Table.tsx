@@ -89,13 +89,13 @@ export function TableCell({
   );
 }
 
-export function TableCellIcon({ children }: { children: React.ReactNode }) {
+export function TableCellIcon({ children, index }: { children: React.ReactNode, index: number }) {
   return (
     <td className="p-4 border-b border-blue-gray-50">
       <div className="flex items-center gap-3">
         <PersonIcon className="inline-block relative object-center w-12 h-12 rounded-lg border border-blue-gray-50 bg-blue-gray-50/50 object-contain p-1" />
         <p className="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-bold">
-          {children}
+          {index +1 }. {children}
         </p>
       </div>
     </td>

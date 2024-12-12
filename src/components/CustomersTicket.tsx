@@ -10,9 +10,9 @@ export function CustomersTicket({ data }: Props) {
   const headers = ['Cliente', 'Vendedor', 'Boletas', 'Numero', 'Estado'];
   return (
     <Table header={headers} >
-      {filter.map((customer) => (
+      {filter.map((customer, index) => (
         <TableRow key={customer.Cliente}>
-          <TableCellIcon>{customer.Cliente}</TableCellIcon>
+          <TableCellIcon index={index}>{customer.Cliente}</TableCellIcon>
           <TableCell>{customer.Vendedor.split(' ')[0].toUpperCase()}</TableCell>
           <TableCell>{customer.Boletas}</TableCell>
             <TableCell>{customer.Numeros.join(', ')}</TableCell>
